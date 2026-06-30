@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Utkarsh Acharya Ji logo">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3d27a"/>
+      <stop offset="1" stop-color="#d4a017"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe89a"/>
+      <stop offset="0.5" stop-color="#f5821f"/>
+      <stop offset="1" stop-color="#e8650e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- outer ring -->
+  <circle cx="60" cy="60" r="56" fill="#5c160c"/>
+  <circle cx="60" cy="60" r="56" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="60" cy="60" r="49" fill="none" stroke="url(#gold)" stroke-width="1" opacity="0.6"/>
+
+  <!-- lotus petals -->
+  <g fill="url(#gold)" opacity="0.95">
+    <path d="M60 14 q7 13 0 24 q-7 -11 0 -24z"/>
+    <path d="M106 60 q-13 7 -24 0 q11 -7 24 0z"/>
+    <path d="M60 106 q-7 -13 0 -24 q7 11 0 24z"/>
+    <path d="M14 60 q13 -7 24 0 q-11 7 -24 0z"/>
+    <path d="M27 27 q14 3 18 18 q-15 -4 -18 -18z"/>
+    <path d="M93 27 q-3 14 -18 18 q4 -15 18 -18z"/>
+    <path d="M93 93 q-14 -3 -18 -18 q15 4 18 18z"/>
+    <path d="M27 93 q3 -14 18 -18 q-4 15 -18 18z"/>
+  </g>
+
+  <!-- Om symbol -->
+  <text x="60" y="74" text-anchor="middle" font-family="'Noto Sans Devanagari','Tiro Devanagari Hindi',serif"
+        font-size="46" font-weight="700" fill="url(#gold)">&#2384;</text>
+
+  <!-- small flame above the Om -->
+  <path d="M60 26 q5 6 0 12 q-5 -6 0 -12z" fill="url(#flame)"/>
+</svg>

@@ -1,0 +1,44 @@
+<header class="site-header">
+  <div class="header-inner">
+
+    <!-- Left: logo + brand -->
+    <a class="brand" (click)="scrollTo('home')" tabindex="0" role="button"
+       [attr.aria-label]="i18n.t('brand.name')">
+      <img class="brand-logo" src="logo.svg" alt="" width="58" height="58" />
+      <span class="brand-text">
+        <span class="brand-name" [lang]="i18n.lang()">{{ i18n.t('brand.name') }}</span>
+        <span class="brand-tagline" [lang]="i18n.lang()">{{ i18n.t('brand.tagline') }}</span>
+      </span>
+    </a>
+
+    <!-- Center: devotional quote -->
+    <p class="header-quote" [lang]="i18n.lang()">
+      <span class="quote-mark">&ldquo;</span>{{ i18n.t('header.quote') }}<span class="quote-mark">&rdquo;</span>
+    </p>
+
+    <!-- Right: profile photo + language toggle + menu button -->
+    <div class="header-right">
+      <img class="profile-photo"
+           src="assets/Profile photo.jpeg"
+           (error)="$any($event.target).src='assets/Profile-pic-2.jpeg'"
+           [alt]="i18n.t('header.profileAlt')" />
+
+      <button class="lang-toggle" type="button" (click)="i18n.toggle()"
+              [attr.aria-label]="'Switch language to ' + i18n.t('header.langToggle')">
+        <span class="globe" aria-hidden="true">🌐</span>{{ i18n.t('header.langToggle') }}
+      </button>
+
+      <button class="menu-btn" type="button" (click)="toggleMenu()"
+              [class.open]="menuOpen()" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="header-nav" [class.open]="menuOpen()" [lang]="i18n.lang()">
+    <button type="button" (click)="scrollTo('home')">{{ i18n.t('nav.home') }}</button>
+    <button type="button" (click)="scrollTo('services')">{{ i18n.t('nav.services') }}</button>
+    <button type="button" class="nav-cta" (click)="scrollTo('connect')">{{ i18n.t('nav.connect') }}</button>
+  </nav>
+</header>

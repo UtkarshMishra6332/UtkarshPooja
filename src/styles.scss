@@ -1,0 +1,167 @@
+/* ============================================================
+   Utkarsh Acharya Ji — global theme & base styles
+   ============================================================ */
+
+:root {
+  /* Devotional palette */
+  --saffron: #f5821f;
+  --saffron-deep: #e8650e;
+  --maroon: #7a1f12;
+  --maroon-deep: #5c160c;
+  --gold: #d4a017;
+  --gold-light: #f3d27a;
+  --cream: #fff7e9;
+  --cream-deep: #fdeccd;
+  --ink: #2c1810;
+  --ink-soft: #5a4435;
+  --white: #ffffff;
+
+  --maroon-rgb: 122, 31, 18;
+
+  /* Header gradient (placeholder until headerbackground.jpg is supplied) */
+  --header-bg:
+    radial-gradient(circle at 18% 30%, rgba(245, 130, 31, 0.35), transparent 45%),
+    radial-gradient(circle at 82% 70%, rgba(212, 160, 23, 0.30), transparent 45%),
+    linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 45%, var(--saffron-deep) 100%);
+
+  --shadow-sm: 0 2px 8px rgba(44, 24, 16, 0.10);
+  --shadow-md: 0 8px 26px rgba(44, 24, 16, 0.14);
+  --shadow-lg: 0 16px 48px rgba(44, 24, 16, 0.20);
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --header-h: 132px;
+
+  --font-body: 'Poppins', 'Segoe UI', system-ui, 'Noto Sans Devanagari', sans-serif;
+  --font-deva: 'Tiro Devanagari Hindi', 'Noto Sans Devanagari', 'Poppins', serif;
+  --font-display: 'Yatra One', 'Tiro Devanagari Hindi', 'Poppins', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 0 0, rgba(245, 130, 31, 0.06), transparent 30%),
+    radial-gradient(circle at 100% 20%, rgba(212, 160, 23, 0.07), transparent 35%);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:lang(hi),
+[lang='hi'] {
+  font-family: var(--font-deva);
+}
+
+h1, h2, h3, h4 {
+  color: var(--maroon);
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--maroon);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--saffron-deep);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Shared layout helpers */
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.7rem, 1.2rem + 2vw, 2.6rem);
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 40px;
+  color: var(--ink-soft);
+  font-size: 1.04rem;
+}
+
+.divider-om {
+  display: block;
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.6rem;
+  margin: 6px auto 26px;
+}
+
+/* Primary call-to-action button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 13px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-deep));
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  color: var(--white);
+}
+.btn-ghost {
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--maroon);
+}
+.btn-ghost:hover {
+  background: var(--gold-light);
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 3px solid var(--saffron);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

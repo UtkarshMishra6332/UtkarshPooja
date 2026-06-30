@@ -1,0 +1,230 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  background-size: cover;
+  background-position: center;
+  /* If a real headerbackground.jpg is dropped into public/assets, use it on top of the gradient */
+  background-image:
+    image-set(url('/assets/headerbackground.jpg') 1x),
+    var(--header-bg);
+  background-blend-mode: overlay;
+  color: var(--cream);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  border-bottom: 3px solid var(--gold);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 22px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 22px;
+}
+
+/* ---- Brand ---- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  color: var(--cream);
+}
+.brand-logo {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  flex-shrink: 0;
+}
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold-light);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.brand-tagline {
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--cream-deep);
+  opacity: 0.9;
+}
+
+/* ---- Center quote ---- */
+.header-quote {
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
+  max-height: 4.6em;
+  overflow: hidden;
+  padding: 0 8px;
+}
+.quote-mark {
+  color: var(--gold-light);
+  font-size: 1.3em;
+  font-weight: 700;
+  vertical-align: -0.15em;
+}
+
+/* ---- Right cluster ---- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.profile-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  background: var(--cream);
+  flex-shrink: 0;
+}
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--gold);
+  color: var(--cream);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+.lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+.globe {
+  font-size: 0.95rem;
+}
+
+/* ---- Hamburger (mobile only) ---- */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  padding: 0 9px;
+}
+.menu-btn span {
+  display: block;
+  height: 2.5px;
+  background: var(--cream);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.menu-btn.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-btn.open span:nth-child(2) { opacity: 0; }
+.menu-btn.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ---- Nav ---- */
+.header-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 22px 8px;
+  flex-wrap: wrap;
+}
+.header-nav button {
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.header-nav button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+.header-nav .nav-cta {
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-deep));
+  color: #fff;
+}
+.header-nav .nav-cta:hover {
+  filter: brightness(1.08);
+}
+
+/* ============================ RESPONSIVE ============================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .header-inner {
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+  }
+  .header-quote {
+    font-size: 0.8rem;
+    max-height: 3.5em;
+    -webkit-line-clamp: 3;
+  }
+  .brand-name { font-size: 1.25rem; }
+  .profile-photo { width: 54px; height: 54px; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .header-inner {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    padding: 8px 14px;
+    gap: 10px;
+  }
+  /* hide the long quote on phones to keep the fixed header compact */
+  .header-quote {
+    display: none;
+  }
+  .menu-btn {
+    display: flex;
+  }
+  .lang-toggle .globe {
+    display: none;
+  }
+  .lang-toggle {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .profile-photo { width: 46px; height: 46px; }
+  .brand-name { font-size: 1.1rem; }
+  .brand-tagline { display: none; }
+
+  /* collapsible nav */
+  .header-nav {
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 14px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .header-nav.open {
+    max-height: 280px;
+    padding: 6px 14px 12px;
+  }
+  .header-nav button {
+    text-align: left;
+    padding: 11px 14px;
+  }
+}

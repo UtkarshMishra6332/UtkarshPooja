@@ -1,0 +1,192 @@
+.hero {
+  position: relative;
+  scroll-margin-top: 150px;
+  min-height: clamp(440px, 72vh, 640px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: var(--cream);
+}
+
+/* ---- Decorative background ---- */
+.hero-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.decor-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* If a real photo is supplied at assets/hero-bg.jpg it sits above the SVG art */
+.hero-photo-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* bottom fade into the page background */
+.hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--cream));
+}
+
+/* ---- Layout ---- */
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  align-items: center;
+  gap: 40px;
+  padding-top: 48px;
+  padding-bottom: 64px;
+}
+
+/* ---- Content ---- */
+.hero-content {
+  text-align: center;
+}
+.hero-om {
+  display: block;
+  font-size: 3rem;
+  color: var(--gold-light);
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.5);
+  animation: glow 3.5s ease-in-out infinite;
+}
+@keyframes glow {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+.hero-welcome {
+  display: block;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: var(--gold-light);
+  margin: 8px 0 6px;
+  padding-left: 0.5em;
+}
+.hero-domain {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.2rem + 4vw, 3.6rem);
+  letter-spacing: 0.01em;
+  margin: 0 0 16px;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(180deg, #fff6dd 0%, #f3d27a 60%, #d4a017 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-subtitle {
+  max-width: 560px;
+  margin: 0 auto 28px;
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--cream-deep);
+}
+.hero-contact-line {
+  max-width: 560px;
+  margin: -8px auto 26px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--gold-light);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-hero {
+  background: linear-gradient(135deg, #ffd24a, #d4a017);
+  color: #5c160c;
+  font-weight: 700;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+  padding: 14px 40px;
+}
+.btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+  color: #5c160c;
+}
+.hero-ghost {
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+  background: rgba(255, 255, 255, 0.06);
+}
+.hero-ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ---- Photo on the right ---- */
+.hero-photo {
+  display: flex;
+  justify-content: center;
+}
+.photo-frame {
+  position: relative;
+  width: clamp(220px, 26vw, 340px);
+  aspect-ratio: 3 / 4;
+  border-radius: 200px 200px 18px 18px;
+  padding: 8px;
+  background: linear-gradient(160deg, #f3d27a, #d4a017 55%, #9c6b0a);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.45);
+}
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 196px 196px 12px 12px;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 196px 196px 12px 12px;
+  background: var(--cream);
+}
+
+/* ============================ RESPONSIVE ============================ */
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .hero-photo {
+    order: -1; /* photo above the text on tablet/mobile */
+  }
+  .photo-frame {
+    width: clamp(200px, 50vw, 280px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: auto;
+  }
+  .hero-grid {
+    padding-top: 28px;
+    padding-bottom: 48px;
+  }
+  .hero-om { font-size: 2.5rem; }
+  .hero-welcome { letter-spacing: 0.35em; font-size: 0.82rem; }
+  .hero-subtitle { font-size: 1rem; }
+}

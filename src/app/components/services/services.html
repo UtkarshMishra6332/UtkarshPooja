@@ -1,0 +1,74 @@
+<section id="services" class="section services-section" [lang]="i18n.lang()">
+  <div class="container">
+    <h2 class="section-title">{{ i18n.t('services.heading') }}</h2>
+    <span class="divider-om" aria-hidden="true">॥ ॐ ॥</span>
+    <p class="section-subtitle">{{ i18n.t('services.intro') }}</p>
+
+    <!-- Quick Pooja: direct-access shortcuts -->
+    <div class="quick-pooja">
+      <div class="quick-head">
+        <h3>{{ i18n.t('services.quickHeading') }}</h3>
+        <p>{{ i18n.t('services.quickIntro') }}</p>
+      </div>
+      <div class="quick-chips">
+        @for (qp of quickPoojas; track qp.label.en) {
+          <button type="button" class="chip" (click)="quickRequest(qp.target, i18n.pick(qp.label))">
+            {{ i18n.pick(qp.label) }}
+          </button>
+        }
+      </div>
+    </div>
+
+    @for (cat of categories; track cat.id) {
+      <div class="category" [id]="'cat-' + cat.id">
+        <div class="category-head">
+          <span class="cat-icon" aria-hidden="true">{{ cat.icon }}</span>
+          <div>
+            <h3 class="cat-title">{{ i18n.pick(cat.title) }}</h3>
+            <p class="cat-intro">{{ i18n.pick(cat.intro) }}</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          @for (item of cat.items; track item.id) {
+            <article class="card" [class.open]="isOpen(item.id)">
+              <button class="card-head" type="button" (click)="toggle(item.id)"
+                      [attr.aria-expanded]="isOpen(item.id)">
+                <span class="card-name">{{ i18n.pick(item.name) }}</span>
+                <span class="chev" aria-hidden="true">⌄</span>
+              </button>
+
+              @if (isOpen(item.id)) {
+                <div class="card-body">
+                  <div class="info-block">
+                    <h4>{{ i18n.t('services.label.history') }}</h4>
+                    <p>{{ i18n.pick(item.history) }}</p>
+                  </div>
+
+                  <div class="info-block">
+                    <h4>{{ i18n.t('services.label.purpose') }}</h4>
+                    <p>{{ i18n.pick(item.purpose) }}</p>
+                  </div>
+
+                  <div class="info-block">
+                    <h4>{{ i18n.t('services.label.facts') }}</h4>
+                    <ul>
+                      @for (fact of item.keyFacts; track $index) {
+                        <li>{{ i18n.pick(fact) }}</li>
+                      }
+                    </ul>
+                  </div>
+
+                  <button class="btn btn-primary request-btn" type="button"
+                          (click)="request(item.id, $event)">
+                    {{ i18n.t('services.requestThis') }}
+                  </button>
+                </div>
+              }
+            </article>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

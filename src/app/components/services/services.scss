@@ -1,0 +1,209 @@
+.services-section {
+  background:
+    radial-gradient(circle at 50% 0, rgba(212, 160, 23, 0.10), transparent 60%);
+}
+
+/* ---- Quick Pooja (red panel, direct-access chips) ---- */
+.quick-pooja {
+  margin-top: 34px;
+  background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 55%, #8f2415 100%);
+  border: 1px solid rgba(212, 160, 23, 0.55);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 26px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.quick-pooja::before {
+  /* subtle radial glow */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 0, rgba(245, 130, 31, 0.28), transparent 45%);
+  pointer-events: none;
+}
+.quick-head {
+  position: relative;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.quick-head h3 {
+  color: var(--gold-light);
+  font-size: 1.4rem;
+  margin: 0 0 4px;
+}
+.quick-head p {
+  color: var(--cream-deep);
+  font-size: 0.92rem;
+  margin: 0;
+  opacity: 0.9;
+}
+.quick-chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.chip {
+  background: rgba(255, 247, 233, 0.97);
+  color: var(--maroon-deep);
+  border: 1.5px solid var(--gold);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 0.93rem;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.chip:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--maroon-deep);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+.category {
+  margin-top: 46px;
+  scroll-margin-top: 160px;
+}
+
+.category-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(245, 130, 31, 0.12), rgba(212, 160, 23, 0.12));
+  border-left: 5px solid var(--saffron);
+  border-radius: var(--radius-sm);
+  margin-bottom: 22px;
+}
+.cat-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.cat-title {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+}
+.cat-intro {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--cream-deep);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold);
+}
+.card.open {
+  grid-column: 1 / -1;
+  border-color: var(--saffron);
+  box-shadow: var(--shadow-md);
+}
+
+.card-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 16px 18px;
+  text-align: left;
+}
+.card-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--maroon);
+}
+.chev {
+  color: var(--saffron-deep);
+  font-size: 1.4rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+.card.open .chev {
+  transform: rotate(180deg);
+}
+
+.card-body {
+  padding: 4px 18px 20px;
+  border-top: 1px dashed var(--cream-deep);
+  animation: reveal 0.25s ease;
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.info-block {
+  margin-top: 16px;
+}
+.info-block h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--saffron-deep);
+  margin: 0 0 5px;
+}
+.info-block p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.96rem;
+}
+.info-block ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.info-block li {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+}
+
+.request-btn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  font-size: 0.92rem;
+}
+
+/* When a card is expanded across the full row, lay its detail in two columns on wide screens */
+@media (min-width: 760px) {
+  .card.open .card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+  }
+  .card.open .request-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .category-head {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

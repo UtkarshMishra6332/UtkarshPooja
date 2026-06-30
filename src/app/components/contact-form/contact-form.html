@@ -1,0 +1,95 @@
+<section id="connect" class="section connect-section" [lang]="i18n.lang()">
+  <div class="container">
+    <h2 class="section-title">{{ i18n.t('connect.heading') }}</h2>
+    <span class="divider-om" aria-hidden="true">॥ ॐ ॥</span>
+    <p class="section-subtitle">{{ i18n.t('connect.subtitle') }}</p>
+
+    <div class="form-card">
+      @if (!submitted()) {
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="grid">
+            <!-- Name -->
+            <div class="field">
+              <label for="name">{{ i18n.t('form.name') }} <span class="req">*</span></label>
+              <input id="name" type="text" formControlName="name"
+                     [placeholder]="i18n.t('form.namePlaceholder')"
+                     [class.invalid]="controlInvalid('name')" />
+              @if (controlInvalid('name')) {
+                <small class="err">{{ i18n.t('form.error.required') }}</small>
+              }
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+              <label for="email">{{ i18n.t('form.email') }} <span class="req">*</span></label>
+              <input id="email" type="email" formControlName="email"
+                     [placeholder]="i18n.t('form.emailPlaceholder')"
+                     [class.invalid]="controlInvalid('email')" />
+              @if (controlInvalid('email')) {
+                <small class="err">{{ i18n.t('form.error.email') }}</small>
+              }
+            </div>
+
+            <!-- Phone -->
+            <div class="field">
+              <label for="phone">{{ i18n.t('form.phone') }} <span class="req">*</span></label>
+              <input id="phone" type="tel" formControlName="phone"
+                     [placeholder]="i18n.t('form.phonePlaceholder')"
+                     [class.invalid]="controlInvalid('phone')" />
+              @if (controlInvalid('phone')) {
+                <small class="err">{{ i18n.t('form.error.phone') }}</small>
+              }
+            </div>
+
+            <!-- Service -->
+            <div class="field">
+              <label for="service">{{ i18n.t('form.service') }} <span class="req">*</span></label>
+              <select id="service" formControlName="service"
+                      [class.invalid]="controlInvalid('service')">
+                <option value="" disabled>{{ i18n.t('form.selectService') }}</option>
+                @for (cat of categories; track cat.id) {
+                  <optgroup [label]="i18n.pick(cat.title)">
+                    @for (item of cat.items; track item.id) {
+                      <option [value]="item.id">{{ i18n.pick(item.name) }}</option>
+                    }
+                  </optgroup>
+                }
+                <option value="other">{{ i18n.t('form.serviceOther') }}</option>
+              </select>
+              @if (controlInvalid('service')) {
+                <small class="err">{{ i18n.t('form.error.required') }}</small>
+              }
+            </div>
+
+            <!-- Request -->
+            <div class="field full">
+              <label for="request">{{ i18n.t('form.request') }}</label>
+              <textarea id="request" rows="4" formControlName="request"
+                        [placeholder]="i18n.t('form.requestPlaceholder')"></textarea>
+            </div>
+          </div>
+
+          <button class="btn btn-primary submit-btn" type="submit" [disabled]="sending()">
+            {{ sending() ? i18n.t('form.sending') : i18n.t('form.submit') }}
+          </button>
+        </form>
+      } @else {
+        <div class="success">
+          <div class="check" aria-hidden="true">✓</div>
+          <p class="success-msg">{{ i18n.t('form.success') }}</p>
+          <div class="success-actions">
+            <a class="btn btn-primary" [href]="whatsappLink()" target="_blank" rel="noopener">
+              <span aria-hidden="true">💬</span> WhatsApp
+            </a>
+            <a class="btn btn-ghost" [href]="mailtoLink()">
+              <span aria-hidden="true">✉️</span> Email
+            </a>
+          </div>
+          <button class="link-btn" type="button" (click)="reset()">
+            {{ i18n.lang() === 'hi' ? 'एक और अनुरोध भेजें' : 'Send another request' }}
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

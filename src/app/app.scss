@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+/* Offset content below the fixed header. Header height varies by breakpoint. */
+.app-main {
+  display: block;
+  padding-top: 168px;
+}
+
+@media (max-width: 900px) {
+  .app-main {
+    padding-top: 150px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-main {
+    /* phone header: brand row + collapsed nav */
+    padding-top: 116px;
+  }
+}
